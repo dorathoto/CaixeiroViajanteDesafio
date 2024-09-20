@@ -1,3 +1,4 @@
+
 # Desafio Caixeiro Viajante
 
 ### Porque esse desafio?
@@ -22,11 +23,11 @@
 Linguagem recomendada: C#
 Para facilitar vamos fazer só com 3 cidades :)
 
-|Distância| Atibaia | Piracaia | Bragança Paulista |
+|Distância| 0. Atibaia | 1. Piracaia | 2. Bragança Paulista |
 |------ | ------ | ------ |------ |
-|Atibaia |	0	|	33	|	25	|
-|Piracaia|	33	|	0	|	35	|
-|Bragança Paulista|	25	|	35	|	0	|
+|0. Atibaia |	0	|	33	|	25	|
+|1. Piracaia|	33	|	0	|	35	|
+|2. Bragança Paulista|	25	|	35	|	0	|
 
 **Objetivo é calcular qual o melhor trajeto? ex:**
 
@@ -48,4 +49,29 @@ Converter essas distâncias em uma Matriz
 					{ 10, 0, 20 }, 
 					{ 15, 20, 0 }  
 				};
+
+Uma possibilidade via força bruta:
+
+    using System;
+    
+    class Program {
+        static void Main() {
+            int[,] distancias = {
+                { 0, 10, 15 }, 
+                { 10, 0, 20 }, 
+                { 15, 20, 0 }  
+            };
+    
+            int custoRota1 = distancias[0, 1] + distancias[1, 2] + distancias[2, 0]; // 0 -> 1 -> 2 -> 0
+            int custoRota2 = distancias[0, 2] + distancias[2, 1] + distancias[1, 0]; // 0 -> 2 -> 1 -> 0
+    
+            if (custoRota1 < custoRota2) {
+                Console.WriteLine("Rota mais curta 1: 0 -> 1 -> 2 -> 0 - custo:"  + custoRota1);
+            } else {
+                Console.WriteLine("Rota mais curta 2: 0 -> 2 -> 1 -> 0 - custo:"  + custoRota2);
+            }
+        }
+    }
+
+Vamos melhorar o código acima? faça outras opções de algoritmo ou leve ao extremo, faça com 4 cidades.
 
